@@ -20,7 +20,8 @@ npm start
 
 ## Steps
 
-- Add DISCORDJS_BOT_TOKEN to `.env`
+- Create `.env` file in root
+- Add DISCORDJS_BOT_TOKEN= to `.env`
 - Create server on Discord (or add to existing server)
 - Authorize bot on Server by replacing 1111 (with Client ID from application settings), visiting the URL: `https://discord.com/oauth2/authorize?client_id=1111&scope=bot` and selecting server from the drop-down menu.
 
@@ -48,7 +49,7 @@ When users react to a message with certain emojis they are given roles.
 1. Go to channel you want to add the webhook to
 2. Integrations > Webhooks > New Webhook > Name > Channel
 3. Copy Webhook URL and paste into browser
-4. Add id and token to `.env`
+4. Add WEBHOOK_ID= and WEBHOOK_TOKEN= with values in browser to `.env`
 
 ## Commands
 

@@ -1,17 +1,17 @@
-require("dotenv").config();
+require('dotenv').config();
 
 const { Client, WebhookClient } = require('discord.js');
 
 const client = new Client({
-  partials: ['MESSAGE', 'REACTION']
+  partials: ['MESSAGE', 'REACTION'],
 });
 
 const webhookClient = new WebhookClient(
   process.env.WEBHOOK_ID,
-  process.env.WEBHOOK_TOKEN,
+  process.env.WEBHOOK_TOKEN
 );
 
-const PREFIX = "$";
+const PREFIX = '$';
 
 client.on('ready', () => {
   console.log(`${client.user.tag} has logged in.`);
@@ -27,8 +27,7 @@ client.on('message', async (message) => {
     if (CMD_NAME === 'kick') {
       if (!message.member.hasPermission('KICK_MEMBERS'))
         return message.reply('You do not have permissions to use that command');
-      if (args.length === 0)
-        return message.reply('Please provide an ID');
+      if (args.length === 0) return message.reply('Please provide an ID');
       const member = message.guild.members.cache.get(args[0]);
       if (member) {
         member
@@ -40,14 +39,16 @@ client.on('message', async (message) => {
       }
     } else if (CMD_NAME === 'ban') {
       if (!message.member.hasPermission('BAN_MEMBERS'))
-        return message.reply("You do not have permissions to use that command");
-      if (args.length === 0) return message.reply("Please provide an ID");
+        return message.reply('You do not have permissions to use that command');
+      if (args.length === 0) return message.reply('Please provide an ID');
       try {
         const user = await message.guild.members.ban(args[0]);
         message.channel.send('User was banned successfully');
       } catch (err) {
         console.log(err);
-        message.channel.send('An error occured. Either I do not have permissions or the user was not found');
+        message.channel.send(
+          'An error occured. Either I do not have permissions or the user was not found'
+        );
       }
     } else if (CMD_NAME === 'announce') {
       console.log(args);
@@ -61,19 +62,16 @@ client.on('message', async (message) => {
 client.on('messageReactionAdd', (reaction, user) => {
   const { name } = reaction.emoji;
   const member = reaction.message.guild.members.cache.get(user.id);
-  if (reaction.message.id === '738666523408990258') {
+  if (reaction.message.id === '772632881465131049') {
     switch (name) {
-      case '🍎':
-        member.roles.add('738664659103776818');
+      case '🍎': // JavaScript
+        member.roles.add('769952578175500289');
         break;
-      case '🍌':
-        member.roles.add('738664632838782998');
+      case '🍌': // CSS
+        member.roles.add('769953233485299725');
         break;
-      case '🍇':
-        member.roles.add('738664618511171634');
-        break;
-      case '🍑':
-        member.roles.add('738664590178779167');
+      case '🍑': // HTML
+        member.roles.add('769953197048463371');
         break;
     }
   }
@@ -82,19 +80,16 @@ client.on('messageReactionAdd', (reaction, user) => {
 client.on('messageReactionRemove', (reaction, user) => {
   const { name } = reaction.emoji;
   const member = reaction.message.guild.members.cache.get(user.id);
-  if (reaction.message.id === '738666523408990258') {
+  if (reaction.message.id === '772632881465131049') {
     switch (name) {
-      case '🍎':
-        member.roles.remove('738664659103776818');
+      case '🍎': // JavaScript
+        member.roles.remove('769952578175500289');
         break;
-      case '🍌':
-        member.roles.remove('738664632838782998');
+      case '🍌': // CSS
+        member.roles.remove('769953233485299725');
         break;
-      case '🍇':
-        member.roles.remove('738664618511171634');
-        break;
-      case '🍑':
-        member.roles.remove('738664590178779167');
+      case '🍑': // HTML
+        member.roles.remove('769953197048463371');
         break;
     }
   }

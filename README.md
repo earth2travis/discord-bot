@@ -1,22 +1,67 @@
-# Instructions
+# Discord Bot
 
-To use this code, follow the instructions:
+## Installation
 
-1) Install all dependencies:
+```shell
+git clone https://github.com/earth2travis/discord-bot.git
+```
 
-    `npm i`
+```shell
+cd discord-bot
+```
 
-2) Create a .env file for environment variables in the root directory of this repository, not inside the `src` folder!
+```shell
+npm install
+```
 
-3) Create three environment variables:
-    - **DISCORDJS_BOT_TOKEN** - Your Bot Token
-    - **WEBHOOK_ID** - For webhooks, not required unless you want to use the webhook command
-    - **WEBHOOK_TOKEN** - The token for your webhook client, refer to 1:12:00 in the video on how to create a Webhook.
+```shell
+npm start
+```
 
-4) Run `npm run start` or `npm run dev` in the project directory
+## Steps
 
-# Notes
+- Add DISCORDJS_BOT_TOKEN to `.env`
+- Create server on Discord (or add to existing server)
+- Authorize bot on Server by replacing 1111 (with Client ID from application settings), visiting the URL: `https://discord.com/oauth2/authorize?client_id=1111&scope=bot` and selecting server from the drop-down menu.
 
-- Keep in mind all of the role IDs, channel IDs, etc. were all for my test server that I used for the tutorial. You must configure it yourself by changing the IDs to meet your needs.
+## Permissions
 
-- If you need additional help, please feel free to join our community Discord server! http://discord.codering.io/
+- Server Settings > Roles > Add: Bots
+- Make sure Bots is moved up in role hierarchy
+- Give it General Permissions to Kick Members, Ban Members and Manage Roles
+
+## Role Reactions
+
+When users react to a message with certain emojis they are given roles.
+
+1. Create Roles channel and Roles for JavaScript, CSS, HTML
+2. Write message with the following text:
+   - JavaScript - 🍑
+   - CSS - 🍌
+   - HTML - 🍎
+3. Pin Message to channel
+4. Replace ID of message to react to in `bot.js` for both `messageReactionAdd` and `messageReactionRemove`
+5. Create roles and copy IDs to replace in switch statements for both `messageReactionAdd` and `messageReactionRemove`
+
+## Webhooks
+
+1. Go to channel you want to add the webhook to
+2. Integrations > Webhooks > New Webhook > Name > Channel
+3. Copy Webhook URL and paste into browser
+4. Add id and token to `.env`
+
+## Commands
+
+- `$kick` 'ID'
+- `$ban` 'ID'
+- `$announce`
+
+## Dependencies
+
+- [discord.js](https://www.npmjs.com/package/discord.js) Node.js module that allows you to easily interact with the Discord API.
+- [dotenv](https://www.npmjs.com/package/dotenv) Loads environment variables from a .env file into process.env.
+- [nodemon](https://www.npmjs.com/package/nodemon) Automatically restarts the node application when file changes in the directory are detected.
+
+## Resources
+
+- Traversy Media [Create a Discord Bot With Node.js](https://www.youtube.com/watch?v=BmKXBVdEV0g)
